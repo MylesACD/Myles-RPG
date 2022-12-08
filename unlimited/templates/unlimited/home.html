@@ -1,0 +1,17 @@
+{% extends "unlimited/base.html" %}
+{% block content %}
+    <h1>Blog Home!</h1>
+    {% for tech in techniques%}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{tech.author.profile.pfp.url}}">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ tech.author }}</a>
+                <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ tech.name }}</a></h2>
+            <p class="article-content">{{ tech.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content%}
