@@ -9,7 +9,7 @@
                 <a class="mr-2" href="#">{{ tech.author }}</a>
                 <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ tech.name }}</a></h2>
+            <h2><a class="article-title" href="technique/{{ tech.pk }}/">{{ tech.name }}</a></h2>
             <p class="article-content">{{ tech.content }}</p>
             </div>
         </article>

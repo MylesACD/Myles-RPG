@@ -6,4 +6,6 @@ urlpatterns =[
         path('about/',views.about,name="unlimited-about"),
         path('technique/<int:pk>/',TechniqueDetailView.as_view(),name="technique-detail"),
         path('technique/new/',TechniqueCreateView.as_view(),name="technique-create"),
+        path('technique/<int:pk>/update/',TechniqueUpdateView.as_view(),name="technique-update"),
+        path('technique/<int:pk>/delete/',TechniqueDeleteView.as_view(),name="technique-delete"),
     ]
