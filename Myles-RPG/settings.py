@@ -129,3 +129,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # redirect to home page
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "login"
+
+#TODO password reset using emails is very annoying
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smpt.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "ethos.rpg.project@gmail.com"
+EMAIL_HOST_PASSWORD = "Corey1917"
