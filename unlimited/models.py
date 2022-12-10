@@ -3,12 +3,24 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your models here.
+
+
+class Character(models.Model):
+    name = models.CharField(max_length=100)
+    last_modified = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(default=timezone.now)
+    player = models.ForeignKey(User,on_delete=models.PROTECT)
+    level = models.IntegerField()
+    
+
+
 class Technique(models.Model):
     name = models.CharField(max_length=100)
     content = models.TextField()
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.PROTECT)
+    character = models.ForeignKey(Character, on_delete=models.PROTECT)
     
     def __str__(self):
         return self.name

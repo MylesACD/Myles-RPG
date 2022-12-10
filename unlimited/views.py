@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
 from .models import Technique
 # Create your views here.
@@ -16,7 +17,18 @@ class TechniqueListView(ListView):
     template_name = "unlimited/home.html"
     context_object_name = "techniques"
     ordering = ["-date_created"]
+    paginate_by = 4
     
+class UserTechniqueListView(ListView):
+    model = Technique
+    template_name = "unlimited/user_techniques.html"
+    context_object_name = "techniques"
+    paginate_by = 4
+    
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get("username"))
+        return Technique.objects.filter(author=user).order_by("-date_created")
+        
 class TechniqueDetailView(DetailView):
     model = Technique
     

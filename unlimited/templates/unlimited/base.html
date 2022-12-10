@@ -23,13 +23,14 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="collapse navbar-collapse" id="navbarToggle"> 
                   <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="{% url "unlimited-home" %}">Home</a>
                     <a class="nav-item nav-link" href="{% url "unlimited-about" %}">About</a>
                   </div>
                   <!-- Navbar Right Side -->
                   <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url "technique-create" %}">New Technique</a>
                     {% if user.is_authenticated%}
                       <a class="nav-item nav-link" href="{% url "profile" %}">{{user.username}}</a>
                       <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
