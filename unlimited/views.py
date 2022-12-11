@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
-from .models import Technique
+from .models import Technique, Character
 # Create your views here.
 
 def home(request):
@@ -31,10 +31,17 @@ class UserTechniqueListView(ListView):
         
 class TechniqueDetailView(DetailView):
     model = Technique
+        
+class CharacterCreateView(LoginRequiredMixin,CreateView):
+    model = Character
+    fields = ["name","level","image"]
+    def form_valid(self,form):
+        form.instance.player = self.request.user
+        return super().form_valid(form)
     
 class TechniqueCreateView(LoginRequiredMixin, CreateView):
     model = Technique    
-    fields = ["name", "content"]
+    fields = ["name", "content","character"]
     
     def form_valid(self,form):
         form.instance.author = self.request.user

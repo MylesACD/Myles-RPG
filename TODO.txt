@@ -8,4 +8,6 @@ making techniques actautlly techniques
     technique analysis
 
 unlimited about page
-advanced & org moves
+advanced & org moves app
+email sending
+wiki app
