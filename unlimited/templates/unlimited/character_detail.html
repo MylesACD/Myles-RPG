@@ -1,0 +1,19 @@
+{% extends "unlimited/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{object.player.profile.pfp.url}}">
+        <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url "user-techniques" object.player.username %}">{{ object.player }}</a>
+            <small class="text-muted">{{ object.date_created|date:"F j, Y" }}</small>
+           
+        </div>
+        <h2 class="article-title"> {{ object.name }}</h2>
+        <p class="article-content">{{ object.level }}</p>
+        </div>
+    </article>
+    {% if object.player == user%}
+    <a class="btn btn-secondary btn-sm mb-1" href="{% url "character-update" object.name %}">Edit</a>
+    <a class="btn btn-danger btn-sm mb-1" href="{% url "character-delete" object.name %}">Delete</a>
+{% endif %}
+{% endblock content%}

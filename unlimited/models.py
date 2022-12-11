@@ -15,7 +15,7 @@ class Character(models.Model):
     image = models.ImageField(default="default.jpg",upload_to="character_art")
     
     def __str__(self):
-        return f"{self.name}"
+        return self.name
     
     def save(self, **kwargs):
         super().save(**kwargs)
@@ -25,6 +25,9 @@ class Character(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+    
+    def get_absolute_url(self):
+        return reverse("character-detail", kwargs={"slug": self.name})
 
 
 class Technique(models.Model):
