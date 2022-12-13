@@ -10,10 +10,13 @@
         </div>
         <h2 class="article-title"> {{ object.name }}</h2>
         <p class="article-content">{{ object.content }}</p>
+            <div >
+                Used By  <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{object.character.image.url}}"><a class="mr-2" href="{% url "character-detail" object.character.slug %}">{{ object.character }}</a>
+            </div>
         </div>
     </article>
     {% if object.author == user%}
-    <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.id %}">Edit</a>
-    <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.id %}">Delete</a>
+    <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.slug %}">Edit</a>
+    <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.slug %}">Delete</a>
 {% endif %}
 {% endblock content%}

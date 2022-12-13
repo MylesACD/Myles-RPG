@@ -9,8 +9,11 @@
                 <a class="mr-2" href="{% url "user-techniques" tech.author.username %}">{{ tech.author }}</a>
                 <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
             </div>
-            <h2><a class="article-title" href="technique/{{ tech.pk }}/">{{ tech.name }}</a></h2>
+            <h2><a class="article-title" href="{% url "technique-detail" tech.slug %}">{{ tech.name }}</a></h2>
             <p class="article-content">{{ tech.content }}</p>
+            <div >
+                Used By  <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
+            </div>
             </div>
         </article>
     {% endfor %}

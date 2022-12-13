@@ -1,7 +1,8 @@
 setttings TODO
 404 and 500 error pages
 Landing title & page buttons
-making techniques actautlly techniques 
+making techniques actautlly techniques
+    inheritance for forms
     tag options
     point calculation and verification
         character model that is contained with users
