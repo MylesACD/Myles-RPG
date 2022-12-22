@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
 from .models import Technique, Character
-from django import forms
+from .forms import TechniqueForm
 # Create your views here.
 
 def home(request):
@@ -40,17 +40,7 @@ class UserTechniqueListView(ListView):
 class TechniqueDetailView(DetailView):
     model = Technique
           
-class TechniqueForm(forms.ModelForm):
-    class Meta:
-       model = Technique
-       choices = forms.MultipleChoiceField( widget  = forms.CheckboxSelectMultiple,)
-       fields = ["name", "character","content"]
-
-    def __init__(self, *args, **kwargs):
-       user = kwargs.pop('user')
-       super(TechniqueForm, self).__init__(*args, **kwargs)
-       self.fields['character'].queryset = Character.objects.filter(player=user)          
-        
+    
 class TechniqueCreateView(LoginRequiredMixin, CreateView):
     model = Technique    
     form_class = TechniqueForm
@@ -68,10 +58,10 @@ class TechniqueCreateView(LoginRequiredMixin, CreateView):
     
 class TechniqueUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Technique    
-    form_class = Technique
+    form_class = TechniqueForm
     
     def get_form_kwargs(self):
-        kwargs = super(TechniqueCreateView, self).get_form_kwargs()
+        kwargs = super(TechniqueUpdateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
     

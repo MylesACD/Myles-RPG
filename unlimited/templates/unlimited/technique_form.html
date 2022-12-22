@@ -1,16 +1,19 @@
 {% extends "unlimited/base.html" %}
 {% load crispy_forms_tags %}
+{% crispy technique_form %}
 {% block content %}
     <div class = "content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class ="border-bottem mb-4">Design a Technique</legend>
-                {{ form|crispy }}
+                <legend class ="border-bottem mb-4">Design Your Technique</legend>
+                {% crispy form %}
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Done</button>
-            </div>
+            {{ cost }}
+            {% for field in form.%}
+                {{cost}}
+            {% endfor %}
         </form>
+        <p>{{cost}}</p>
     </div>
 {% endblock content%}
