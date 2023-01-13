@@ -1,24 +1,86 @@
 {% extends "unlimited/base.html" %}
 {% load crispy_forms_tags%}
+{% load static %}
 {% block content %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{user.profile.pfp.url}}">
-            <div class="media-body">
-                <h2 class="account-heading">{{user.username}}</h2>
-                <p class="text-secondary">{{user.email}}</p>
-            </div>
-        </div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class ="border-bottem mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-            </div>
-        </form>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'edit')">Edit Info <img class="icon" src="{% static "users/edit-icon.png" %}"></button>
+        <button class="tablinks" onclick="openTab(event, 'techniques')">Techniques </button>
+        <button class="tablinks" onclick="openTab(event, 'characters')">Characters </button>
     </div>
+    <div id="edit" class="tabcontent">
+        <div class="content-section">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{user.profile.pfp.url}}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{user.username}}</h2>
+                    <p class="text-secondary">{{user.email}}</p>
+                </div>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class ="border-bottem mb-4">Profile Info</legend>
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="techniques" class="tabcontent">
+        {% for tech in techniques %}
+        {% if tech.author == user %}
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{tech.author.profile.pfp.url}}">
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{% url "user-techniques" tech.author.username %}">{{ tech.author }}</a>
+                    <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url "technique-detail" tech.slug %}">{{ tech.name }}</a></h2>
+                <p class="article-content">{{ tech.content }}</p>
+                <div >
+                    Used By  <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
+                </div>
+                </div>
+            </article>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div id="characters" class="tabcontent">
+        {% for character in characters %}
+        {% if character.player == user %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{character.image.url}}">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="{% url "user-techniques" character.player.username %}">{{ character.player }}</a>
+                <small class="text-muted">{{ character.date_created|date:"F j, Y" }}</small>
+               
+            </div>
+            <h2 class="article-title"> {{ character.name }}</h2>
+            <p class="article-content">{{ character.level }}</p>
+            </div>
+        </article>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>        
 {% endblock content%}
+

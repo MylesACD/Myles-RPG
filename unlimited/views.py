@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
 from .models import Technique, Character
 from .forms import TechniqueForm
@@ -40,11 +41,14 @@ class UserTechniqueListView(ListView):
 class TechniqueDetailView(DetailView):
     model = Technique
           
-    
-class TechniqueCreateView(LoginRequiredMixin, CreateView):
+#TODO this class and TechniqueUpdateView are basiaclly the same thing
+#maybe find a way to combine the code for future simplicity 
+class TechniqueCreateView(LoginRequiredMixin, CreateView,SuccessMessageMixin):
     model = Technique    
     form_class = TechniqueForm
-
+    
+    success_message = "Technique saved successfully"
+    
     def get_form_kwargs(self):
         kwargs = super(TechniqueCreateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
@@ -52,14 +56,14 @@ class TechniqueCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self,form):
         form.instance.author = self.request.user
-        
         return super().form_valid(form)
+
     
     
-class TechniqueUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class TechniqueUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView,SuccessMessageMixin):
     model = Technique    
     form_class = TechniqueForm
-    
+    success_message = "Technique saved successfully"
     def get_form_kwargs(self):
         kwargs = super(TechniqueUpdateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
@@ -72,10 +76,11 @@ class TechniqueUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         tech = self.get_object()
         return tech.author == self.request.user
-    
+
 class TechniqueDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Technique    
     success_url = "/unlimited/"
+    
     def test_func(self):
         tech = self.get_object()
         return tech.author == self.request.user 

@@ -9,11 +9,9 @@
                 <legend class ="border-bottem mb-4">Design Your Technique</legend>
                 {% crispy form %}
             </fieldset>
-            {{ cost }}
-            {% for field in form.%}
-                {{cost}}
-            {% endfor %}
+           <span><p>Maximum Cost: {{ form.instance.max_cost }}<p></span>
+           <span><p>Most Recent Submission: {{ form.instance.cost }}<p></span> 
         </form>
-        <p>{{cost}}</p>
+        
     </div>
 {% endblock content%}
