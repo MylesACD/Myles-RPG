@@ -1,0 +1,8 @@
+docker compose up
+
+docker-compose run --rm app sh -c "python manage.py runserver"
+
+docker-compose -f docker-compose-prod.yml down --volumes
+
+
+docker-compose -f docker-compose-prod.yml build

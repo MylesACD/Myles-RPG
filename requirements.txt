@@ -3,3 +3,4 @@ django-crispy-forms>=1.14.0
 django-rename-app>0.1.0
 Pillow>0.0.0
 psycopg2>=2.8.6,<2.9
+uWSGI>=2.0.19,<2.1
