@@ -13,6 +13,10 @@ class Profile(models.Model):
     def save(self, *args,**kwargs):
         super().save(*args,**kwargs)
         
+        
+        #make sure the default image is enforced
+        if not self.image or self.image == None or self.image == '':
+            self.image = "default.jpg"
         img = Image.open(self.pfp.path)
             
         if img.height>300 or img.width>300:
