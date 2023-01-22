@@ -19,7 +19,7 @@ class Character(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     player = models.ForeignKey(User,on_delete=models.PROTECT)
     level = models.IntegerField()
-    image = models.ImageField(default="default.jpg",upload_to="character_art",blank=True)
+    image = models.ImageField(default="default.jpg",blank=True)
     slug = models.SlugField(null=True,unique=True)
     
     def __str__(self):
