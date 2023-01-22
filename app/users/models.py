@@ -15,7 +15,7 @@ class Profile(models.Model):
         
         
         #make sure the default image is enforced
-        if not self.image or self.image == None or self.image == '':
+        if  self.pfp == None or self.pfp == '':
             self.image = "default.jpg"
         img = Image.open(self.pfp.path)
             

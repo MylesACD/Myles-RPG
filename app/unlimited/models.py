@@ -32,7 +32,7 @@ class Character(models.Model):
             self.slug = slugify(self.name)
         
         #make sure the default image is enforced
-        if not self.image or self.image == None or self.image == '':
+        if self.image == None or self.image == '':
             self.image = "default.jpg"
 
         img = Image.open(self.image.path)
