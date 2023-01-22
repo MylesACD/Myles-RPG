@@ -17,5 +17,7 @@ docker-compose -f docker-compose-prod.yml logs
 
 ---UPDATE COMMANDS----
 git pull origin
-ocker-compose -f docker-compose-prod.yml build app
+docker-compose -f docker-compose-prod.yml build app
 docker-compose -f docker-compose-prod.yml up --no-deps -d app
+
+chmod +x update-app.sh
