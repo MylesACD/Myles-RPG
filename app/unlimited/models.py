@@ -26,7 +26,7 @@ class Character(models.Model):
         return self.name
     
     def save(self,*args ,**kwargs):
-        
+        val = super().save(*args,**kwargs)
         
         if not self.slug:
             self.slug = slugify(self.name)
@@ -37,8 +37,7 @@ class Character(models.Model):
                 output_size = (300,300)
                 img.thumbnail(output_size)
                 img.save(self.image.path)
-      
-        return  super().save(*args,**kwargs)
+        return val
     
     def get_absolute_url(self):
         return reverse("character-detail", kwargs={"slug": self.slug})
