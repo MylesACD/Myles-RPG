@@ -12,12 +12,11 @@ class Profile(models.Model):
     
     def save(self, *args,**kwargs):
         super().save(*args,**kwargs)
-        try:
-            img = Image.open(self.pfp.path)
+        
+        img = Image.open(self.pfp.path)
             
-            if img.height>300 or img.width>300:
-                output_size = (300,300)
-                img.thumbnail(output_size)
-                img.save(self.pfp.path)
-        except:
-            pass
+        if img.height>300 or img.width>300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.pfp.path)
+       
