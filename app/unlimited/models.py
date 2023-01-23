@@ -17,7 +17,7 @@ class Character(models.Model):
     name = models.CharField(max_length=100,unique=True)
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
-    player = models.ForeignKey(User,on_delete=models.PROTECT)
+    player = models.ForeignKey(User,on_delete=models.CASCADE)
     level = models.IntegerField()
     image = models.ImageField(default="default.jpg",blank=True)
     slug = models.SlugField(null=True,unique=True)
@@ -40,6 +40,8 @@ class Character(models.Model):
         except:
             pass
         return super().save(*args,**kwargs)
+    
+    
     def get_absolute_url(self):
         return reverse("character-detail", kwargs={"slug": self.slug})
 
@@ -97,8 +99,8 @@ class Technique(models.Model):
     content = models.TextField()
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
-    character = models.ForeignKey(Character, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    character = models.ForeignKey(Character, on_delete=models.SET_NULL)
     slug = models.SlugField(null=True,unique=True)
     
     max_cost = models.IntegerField(null=True)

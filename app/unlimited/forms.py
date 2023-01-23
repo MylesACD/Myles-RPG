@@ -5,7 +5,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit, BaseInput
 from crispy_forms.bootstrap import Accordion, AccordionGroup
 
-
 class TechniqueForm(forms.ModelForm):
         
     class Meta:
@@ -46,4 +45,17 @@ class TechniqueForm(forms.ModelForm):
            Submit('submit', 'Submit', css_class="btn btn-outline-info"),
           
        )
-       
+
+class CharacterForm(forms.ModelForm):
+    class Meta:
+        model = Character
+        fields=["name","level","image",]
+    
+    def __init__(self,*args,**kwargs):
+        super(TechniqueForm, self).__init__(*args, **kwargs)
+        
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset("Create A Character","name","level","image"),
+            Submit('submit', 'Done', css_class="btn btn-outline-info"),
+        )

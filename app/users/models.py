@@ -15,8 +15,7 @@ class Profile(models.Model):
         
         
         #make sure the default image is enforced
-        if  self.pfp == None or self.pfp == '':
-            self.image = "default.jpg"
+       
         img = Image.open(self.pfp.path)
             
         if img.height>300 or img.width>300:

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
 from .models import Technique, Character
-from .forms import TechniqueForm
+from .forms import TechniqueForm, CharacterForm
 # Create your views here.
 
 def home(request):
@@ -90,6 +90,7 @@ Character Views
 '''
 class CharacterCreateView(LoginRequiredMixin,CreateView):
     model = Character
+    form_class = CharacterForm
     fields = ["name","level","image"]
     
     def form_valid(self,form):
@@ -100,7 +101,8 @@ class CharacterDetailView(DetailView):
     model = Character      
     
 class CharacterUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Character    
+    model = Character
+    form_class = CharacterForm    
     fields = ["name", "level", "image"]
     
     def form_valid(self,form):
