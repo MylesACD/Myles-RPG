@@ -91,7 +91,6 @@ Character Views
 class CharacterCreateView(LoginRequiredMixin,CreateView):
     model = Character
     form_class = CharacterForm
-    fields = ["name","level","image"]
     
     def form_valid(self,form):
         form.instance.player = self.request.user
@@ -103,7 +102,6 @@ class CharacterDetailView(DetailView):
 class CharacterUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Character
     form_class = CharacterForm    
-    fields = ["name", "level", "image"]
     
     def form_valid(self,form):
         form.instance.author = self.request.user
