@@ -52,7 +52,7 @@ class CharacterForm(forms.ModelForm):
         fields=["name","level","image",]
     
     def __init__(self,*args,**kwargs):
-        super(TechniqueForm, self).__init__(*args, **kwargs)
+        super(CharacterForm, self).__init__(*args, **kwargs)
         
         self.helper = FormHelper()
         self.helper.layout = Layout(
