@@ -11,8 +11,8 @@
         <h2 class="article-title"> {{ object.name }}</h2>
         <p class="article-content">{{ object.content }}</p>
             <div >
-                {% if tech.character %}
-                    Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
+                {% if object.character %}
+                    Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{object.character.image.url}}"><a class="mr-2" href="{% url "character-detail" object.character.slug %}">{{ object.character }}</a>
                 {% else %}
                     Used By Nobody
                 {% endif %}
