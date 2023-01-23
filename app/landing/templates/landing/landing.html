@@ -17,46 +17,12 @@
        <title>Myles RPG</title>
        {% endif %}
        <link rel="shortcut icon" type="image/ico" href="{% static 'unlimited/favicon.ico' %}"/>
-        <style>
-            body {
-                background-image: url("{% static 'landing/Twilight-Pagoda-transformed (1).png' %}");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                background-position: center;
-            }
-
-            #gradleft {
-                width: 1%;
-                height: 100%;
-                position: absolute;
-                background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-            }
-            #gradtop {
-                width: 100%;
-                height: 1%;
-                position: absolute;
-                background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-            }
-            #gradright {
-                width: 1%;
-                height: 100%;
-                float: right;
-                background-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
-            }
-            #gradbottom {
-                width: 100%;
-                height: 1%;
-                position:absolute; bottom:0;
-                background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
-            }
-        </style>
         
     </head>
     <body>
         
-    
        <h1><a href="{% url "unlimited-home" %}">Unlimited</a></h1>
+       <a href="{% url "unlimited-home" %}" class="button glow-button">Glow Button</a>
     </body>
 </html>       
 {% endblock content%}
