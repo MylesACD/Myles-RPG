@@ -100,7 +100,7 @@ class Technique(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    character = models.ForeignKey(Character, on_delete=models.SET_NULL)
+    character = models.ForeignKey(Character, null=True,on_delete=models.SET_NULL)
     slug = models.SlugField(null=True,unique=True)
     
     max_cost = models.IntegerField(null=True)
