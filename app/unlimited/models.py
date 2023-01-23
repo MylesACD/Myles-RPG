@@ -39,7 +39,7 @@ class Character(models.Model):
                 img.save(self.image.path)  
         except:
             pass
-    
+        return super().save(*args,**kwargs)
     def get_absolute_url(self):
         return reverse("character-detail", kwargs={"slug": self.slug})
 
