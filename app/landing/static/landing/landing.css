@@ -1,23 +1,47 @@
-
-  body {
-    background: #161616 !important;
-    text-align: center;
+body {
+    background: #1d1f20;
     padding: 60px;
     font-family: sans-serif;
+    color: #333333;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-around;
   }
-  
+  .flex-grid {
+    display: flex;
+  }
+  .col {
+    flex: 1;
+    padding: 50px;
+  }
   .button {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    background: rgb(145, 92, 182);
-    padding: 15px 40px;
-    border-radius: 4px;
+    background: #161616;
+    border-radius: 10px;
     font-weight: normal;
     text-transform: uppercase;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border: 2px solid var(--glow-color);
+    color: var(--glow-color);
+    
+   
+   
   }
-  
+  .comet{
+     --glow-color: #F7EF17;
+     
+  }
+  .scroll{
+     --glow-color: #157906;
+    
+  }
+  .book{
+     --glow-color: #0B56FF;
+  }
   .glow-button:hover {
-    color: rgba(255, 255, 255, 1);
-    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+    box-shadow: 0 0px 30px var(--glow-color);
   }

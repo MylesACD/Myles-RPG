@@ -20,9 +20,16 @@
         
     </head>
     <body>
-        
-       <h1><a href="{% url "unlimited-home" %}">Unlimited</a></h1>
-       <a href="{% url "unlimited-home" %}" class="button glow-button">Glow Button</a>
+        <div class="flex-grid">
+            <div class="col">
+              <div  class="button book glow-button" ><img src = "{% static 'landing/book-symbol.png' %}" height="100%" width="100%"></div>
+              <div  class="button scroll glow-button" ><img src = "{% static 'landing/scroll-symbol.png' %}" height="100%" width="100%"></div>
+            </div>
+            <div class="col">
+              <div  class="button comet glow-button" ><a href="{% url "unlimited-home" %}"><img src = "{% static 'landing/comet-symbol.png' %}" height="100%" width="100%"></a></div>
+              <div  class="button comet glow-button" ></div>
+            </div>
+          </div>
     </body>
 </html>       
 {% endblock content%}

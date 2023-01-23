@@ -34,7 +34,7 @@
                     <a class="nav-item nav-link" href="{% url "technique-create" %}">New Technique</a>
                     <a class="nav-item nav-link" href="{% url "character-create" %}">New Character</a>
                     {% if user.is_authenticated%}
-                      <img class="rounded-circle article-img" src="{{user.profile.pfp.url}}" style="width:5%;height:5%">
+                      <img class="rounded-circle article-img" src="{{user.profile.pfp.url}}" style="width:5%;height:5%margin:0px">
                       <a class="nav-item nav-link" href="{% url "profile" %}">{{user.username}}</a>
                       <a class="nav-item nav-link" href="{% url "logout" %}">Logout</a>
                     {% else %}
