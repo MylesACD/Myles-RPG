@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from unlimited.models import Technique, Character
@@ -10,8 +11,11 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
             messages.success(request,f"{username}, your account has been created!")
-            return redirect("profile")
+            new_user = authenticate(username,password)
+            login(request, new_user)
+            return redirect("unlimited-home")
     else:
         form = UserRegisterForm()
     return render(request,"users/register.html",{"form":form})
