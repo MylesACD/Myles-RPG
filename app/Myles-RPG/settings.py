@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # redirect to home page
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/unlimited"
 LOGIN_URL = "login"
 
 #TODO password reset using emails is very annoying
