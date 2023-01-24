@@ -43,7 +43,7 @@
                 <p class="article-content">{{ tech.content }}</p>
                 <div >
                    
-                    {% if tech.character %}
+                    {% if tech.character%}
                         Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
                     {% else %}
                         Used By Nobody
