@@ -13,7 +13,7 @@ def register(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             messages.success(request,f"{username}, your account has been created!")
-            new_user = authenticate(username,password)
+            new_user = authenticate(username=username,password=password)
             login(request, new_user)
             return redirect("unlimited-home")
     else:
