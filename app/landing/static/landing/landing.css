@@ -25,12 +25,25 @@ body {
     height: 300px;
     margin-bottom: 30px;
     margin-top: 30px;
-    border: 2px solid var(--glow-color);
+    border: 4px solid var(--glow-color);
     color: var(--glow-color);
-    
-   
-   
   }
+  
+  @keyframes glow {
+    0% {
+        box-shadow: 4px -4px 30px var(--glow-color);
+    }25% {
+        box-shadow: -4px -4px 30px var(--glow-color);
+    }50%{
+        box-shadow: -4px 4px 30px var(--glow-color);
+    }75%{
+        box-shadow: 4px 4px 30px var(--glow-color);
+    }100% {
+        box-shadow: 4px -4px 30px var(--glow-color);
+    }
+  }
+
+  
   .comet{
      --glow-color: #FF1E22;
      
@@ -42,6 +55,10 @@ body {
   .book{
      --glow-color: #0B56FF;
   }
+
+  .die{
+    --glow-color: #D900DC;
+  }
   .glow-button:hover {
-    box-shadow: 0 0px 30px var(--glow-color);
+    animation: glow 1s infinite
   }
