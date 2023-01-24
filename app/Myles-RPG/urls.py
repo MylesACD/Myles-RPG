@@ -35,6 +35,3 @@ urlpatterns = [
     path("unlimited/",include("unlimited.urls"),name="unlimited"),
 ]
  
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
