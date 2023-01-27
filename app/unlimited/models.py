@@ -91,6 +91,7 @@ class Technique(models.Model):
     practiced = models.BooleanField(default=False)
     transformation = models.BooleanField(default=False)
     stunning = models.BooleanField(default=False)
+    subtle = models.BooleanField(default=False)
     #these 2 get labels
     armor_shred = models.BooleanField(default=False)
     terrain = models.BooleanField(default=False)
@@ -155,5 +156,6 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 4* int(instance.terrain) 
     instance.cost += 4* int(instance.armor_shred) 
     instance.cost += 4* int(instance.stunning) 
+    instance.cost += 4* int(instance.subtle)
     
     

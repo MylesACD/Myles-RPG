@@ -1,11 +1,6 @@
 setttings TODO
 404 and 500 error pages
 Landing title & page buttons
-making techniques actautlly techniques
-    inheritance for forms
-    tag options
-    point calculation and verification
-        character model that is contained with users
     technique analysis
 
 unlimited about page
@@ -13,3 +8,5 @@ unlimited about page
 advanced & org moves app
 email sending
 wiki app
+
+debug=false in yml
