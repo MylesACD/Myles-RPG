@@ -11,9 +11,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             new_username = form.cleaned_data.get("username")
-           
             messages.success(request,f"{new_username}, your account has been created!")
-       
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect("unlimited-home")
     else:
