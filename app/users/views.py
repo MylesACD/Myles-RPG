@@ -9,12 +9,12 @@ def register(request):
     if request.method=="POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             new_username = form.cleaned_data.get("username")
-            new_password = form.cleaned_data.get("password")
+           
             messages.success(request,f"{new_username}, your account has been created!")
-            new_user = authenticate(username=new_username,password=new_password)
-            login(request, new_user)
+       
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect("unlimited-home")
     else:
         form = UserRegisterForm()
