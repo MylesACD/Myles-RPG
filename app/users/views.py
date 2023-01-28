@@ -10,10 +10,10 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            messages.success(request,f"{username}, your account has been created!")
-            new_user = authenticate(username=username,password=password)
+            new_username = form.cleaned_data.get("username")
+            new_password = form.cleaned_data.get("password")
+            messages.success(request,f"{new_username}, your account has been created!")
+            new_user = authenticate(username=new_username,password=new_password)
             login(request, new_user)
             return redirect("unlimited-home")
     else:
