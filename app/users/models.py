@@ -15,11 +15,14 @@ class Profile(models.Model):
         
         
         #make sure the default image is enforced
-       
-        img = Image.open(self.pfp.path)
-            
-        if img.height>300 or img.width>300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.pfp.path)
+        try:
+            img = Image.open(self.pfp.path)
+                
+            if img.height>300 or img.width>300:
+                output_size = (300,300)
+                img.thumbnail(output_size)
+                img.save(self.pfp.path)
+        except:
+            pass
+        
        
