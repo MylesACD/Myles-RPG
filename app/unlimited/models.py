@@ -39,6 +39,7 @@ class Character(models.Model):
                 img.save(self.image.path)  
         except:
             pass
+        
         return super().save(*args,**kwargs)
     
     
