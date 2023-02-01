@@ -84,6 +84,7 @@ class Technique(models.Model):
     controlled = models.BooleanField(default=False)
     frightning = models.BooleanField(default=False)
     cure = models.BooleanField(default=False)
+    mobile = models.BooleanField(default=False)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
     
@@ -149,6 +150,7 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 3* int(instance.controlled) 
     instance.cost += 3* int(instance.frightning) 
     instance.cost += 3* int(instance.cure) 
+    instance.cost += 3* int(instance.mobile)
     #----------tier 3 technique tags------------------
     instance.cost += 4* int(instance.summon)
     instance.cost += 4* int(instance.vampiric) 
@@ -158,5 +160,6 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 4* int(instance.armor_shred) 
     instance.cost += 4* int(instance.stunning) 
     instance.cost += 4* int(instance.subtle)
+    
     
     
