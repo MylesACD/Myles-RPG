@@ -3,7 +3,7 @@ body {
     padding: 60px;
     font-family: sans-serif;
     color: #333333;
-    margin-top: 5rem;
+    margin-top: 0rem;
     display: flex;
     justify-content: space-around;
   }
@@ -25,7 +25,7 @@ body {
     height: 300px;
     margin-bottom: 30px;
     margin-top: 30px;
-    border: 4px solid var(--glow-color);
+    border: 5px solid var(--glow-color);
     color: var(--glow-color);
   }
   
@@ -66,6 +66,7 @@ body {
 
   .die{
     --glow-color: #D900DC;
+
   }
   .glow-button:hover {
     animation: glow 1s infinite

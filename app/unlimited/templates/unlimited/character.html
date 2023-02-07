@@ -1,0 +1,13 @@
+{% load static %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{object.image.url}}">
+    <div class="media-body">
+    <div class="article-metadata">
+        <a class="mr-2" href="{% url "user-techniques" object.player.username %}">{{ object.player }}</a>
+        <small class="text-muted">{{ object.date_created|date:"F j, Y" }}</small>
+       
+    </div>
+    <h2 class="article-title"> {{ object.name }}</h2>
+    <p class="article-content">{{ object.level }}</p>
+    </div>
+</article>

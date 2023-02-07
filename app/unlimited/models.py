@@ -84,7 +84,7 @@ class Technique(models.Model):
     controlled = models.BooleanField(default=False)
     frightning = models.BooleanField(default=False)
     cure = models.BooleanField(default=False)
-    mobile = models.BooleanField(default=False)
+    mobile = models.BooleanField(default=False,null=True)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
     
@@ -93,7 +93,7 @@ class Technique(models.Model):
     practiced = models.BooleanField(default=False)
     transformation = models.BooleanField(default=False)
     stunning = models.BooleanField(default=False)
-    subtle = models.BooleanField(default=False)
+    subtle = models.BooleanField(default=False,null=True)
     #these 2 get labels
     armor_shred = models.BooleanField(default=False)
     terrain = models.BooleanField(default=False)

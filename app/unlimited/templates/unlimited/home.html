@@ -1,26 +1,8 @@
 {% extends "unlimited/base.html" %}
 {% block content %}
     <h1>Player Techniques</h1>
-    {% for tech in techniques%}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{tech.author.profile.pfp.url}}">
-            <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url "user-techniques" tech.author.username %}">{{ tech.author }}</a>
-                <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="technique/{{ tech.slug }}/">{{ tech.name }}</a></h2>
-            <p class="article-content">{{ tech.content }}</p>
-                <div >
-                    {% if tech.character %}
-                        Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
-                    {% else %}
-                        Used By Nobody
-                    {% endif %}
-                </div>
-            </div>
-            
-        </article>
+    {% for object in techniques%}
+        {% include "unlimited/technique.html" %}
     {% endfor %}
     {% if is_paginated %}
         {% if page_obj.has_previous %}

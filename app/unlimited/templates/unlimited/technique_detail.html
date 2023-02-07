@@ -1,24 +1,7 @@
 {% extends "unlimited/base.html" %}
+
 {% block content %}
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{object.author.profile.pfp.url}}">
-        <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="{% url "user-techniques" object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_created|date:"F j, Y" }}</small>
-           
-        </div>
-        <h2 class="article-title"> {{ object.name }}</h2>
-        <p class="article-content">{{ object.content }}</p>
-            <div >
-                {% if object.character %}
-                    Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{object.character.image.url}}"><a class="mr-2" href="{% url "character-detail" object.character.slug %}">{{ object.character }}</a>
-                {% else %}
-                    Used By Nobody
-                {% endif %}
-            </div>
-        </div>
-    </article>
+    {% include "unlimited/technique.html" %}
     {% if object.author == user%}
     <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.slug %}">Edit</a>
     <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.slug %}">Delete</a>

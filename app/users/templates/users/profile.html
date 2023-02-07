@@ -30,46 +30,17 @@
         </div>
     </div>
     <div id="techniques" class="tabcontent">
-        {% for tech in techniques %}
-        {% if tech.author == user %}
-            <article class="media content-section">
-                <img class="rounded-circle article-img" src="{{tech.author.profile.pfp.url}}">
-                <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="{% url "user-techniques" tech.author.username %}">{{ tech.author }}</a>
-                    <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
-                </div>
-                <h2><a class="article-title" href="{% url "technique-detail" tech.slug %}">{{ tech.name }}</a></h2>
-                <p class="article-content">{{ tech.content }}</p>
-                <div >
-                   
-                    {% if tech.character%}
-                        Used By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{tech.character.image.url}}"><a class="mr-2" href="{% url "character-detail" tech.character.slug %}">{{ tech.character }}</a>
-                    {% else %}
-                        Used By Nobody
-                    {% endif %}
-                </div>
-                </div>
-            </article>
-        {% endif %}
+        {% for object in techniques %}
+            {% if object.author == user %}
+                {% include "unlimited/technique.html" %}
+            {% endif %}
         {% endfor %}
     </div>
     <div id="characters" class="tabcontent">
-        {% for character in characters %}
-        {% if character.player == user %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{character.image.url}}">
-            <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url "user-techniques" character.player.username %}">{{ character.player }}</a>
-                <small class="text-muted">{{ character.date_created|date:"F j, Y" }}</small>
-               
-            </div>
-            <h2 class="article-title"> {{ character.name }}</h2>
-            <p class="article-content">{{ character.level }}</p>
-            </div>
-        </article>
-        {% endif %}
+        {% for object in characters %}
+            {% if character.player == user %}
+                {% include "unlimited/character.html" %}
+            {% endif %}
         {% endfor %}
     </div>
     <script>
