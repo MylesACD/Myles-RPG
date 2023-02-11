@@ -9,7 +9,6 @@ from django import forms
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib import messages
-import math
 # Create your models here.
 
 
@@ -21,6 +20,8 @@ class Character(models.Model):
     level = models.IntegerField()
     image = models.ImageField(default="default.jpg",blank=True)
     slug = models.SlugField(null=True,unique=True)
+    current_points = models.IntegerField(null=True)
+    point_pool = models.IntegerField(null=True)
     
     def __str__(self):
         return self.name
@@ -46,15 +47,7 @@ class Character(models.Model):
     def get_absolute_url(self):
         return reverse("character-detail", kwargs={"slug": self.slug})
 
-@receiver(pre_save, sender=Character)
-def create_slug(sender, instance, *args, **kwargs):
-    instance.slug = slugify(instance.name)
 
-@receiver(post_save, sender=Character)
-def update_technique_costs(sender, instance, *args, **kwargs):
-    qset = Technique.objects.filter(character = instance)
-    for tech in qset:
-        tech.save()
           
 
 
@@ -123,43 +116,5 @@ class Technique(models.Model):
     
     def get_success_message(self):
         return self.success_message
-    
-    
-@receiver(pre_save, sender=Technique)
-def create_slug(sender, instance, *args, **kwargs):
-    instance.slug = slugify(instance.name)
-    
-@receiver(pre_save, sender=Technique)
-def set_costs(sender, instance, *args, **kwargs):
-    instance.max_cost = math.ceil(2 * (10+2*instance.character.level) / 3)
-    instance.max_cost += 4*(instance.boon)
-    instance.cost = int(instance.power)
-    instance.cost -= int(instance.boon) * 4
-    #----------tier 1 technique tags------------------
-    instance.cost += 2* int(instance.multitarget)
-    instance.cost += 2* int(instance.area) 
-    instance.cost += 2* int(instance.range) 
-    instance.cost += 2* int(instance.disarm)
-    instance.cost += 2* int(instance.forceful) 
-    #----------tier 2 technique tags------------------
-    instance.cost += 3* int(instance.heal)
-    instance.cost += 3* int(instance.destructive) 
-    instance.cost += 3* int(instance.combo)
-    instance.cost += 3* int(instance.immobilizing) 
-    instance.cost += 3* int(instance.piercing)  
-    instance.cost += 3* int(instance.controlled) 
-    instance.cost += 3* int(instance.frightning) 
-    instance.cost += 3* int(instance.cure) 
-    instance.cost += 3* int(instance.mobile)
-    #----------tier 3 technique tags------------------
-    instance.cost += 4* int(instance.summon)
-    instance.cost += 4* int(instance.vampiric) 
-    instance.cost += 4* int(instance.practiced) 
-    instance.cost += 4* int(instance.transformation)
-    instance.cost += 4* int(instance.terrain) 
-    instance.cost += 4* int(instance.armor_shred) 
-    instance.cost += 4* int(instance.stunning) 
-    instance.cost += 4* int(instance.subtle)
-    
     
     

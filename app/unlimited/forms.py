@@ -12,7 +12,7 @@ class TechniqueForm(forms.ModelForm):
         fields = ["character","name",
                   "power", "boon",
                   "multitarget","range","area","disarm","forceful",
-                  "destructive","combo","heal","immobilizing","piercing","controlled","frightning","cure",
+                  "destructive","combo","heal","immobilizing","piercing","controlled","frightning","cure", "mobile",
                   "vampiric","practiced","transformation","summon","armor_shred","terrain","stunning", "subtle",
                   ]
         
@@ -40,7 +40,7 @@ class TechniqueForm(forms.ModelForm):
            Accordion(AccordionGroup("Info","name","character")),
            Accordion(AccordionGroup("Tier 0","power","boon")),
            Accordion(AccordionGroup("Tier 1 (2 points)","multitarget","area","range","disarm","forceful")),
-           Accordion(AccordionGroup("Tier 2 (3 points)","destructive","combo","heal","immobilizing","piercing","controlled","frightning","cure")),
+           Accordion(AccordionGroup("Tier 2 (3 points)","destructive","combo","heal","immobilizing","piercing","controlled","frightning","cure","mobile")),
            Accordion(AccordionGroup("Tier 3 (4 points)","vampiric","practiced","transformation","summon","armor_shred","terrain","stunning", "subtle")),
            Submit('submit', 'Submit', css_class="btn btn-outline-info"),
           

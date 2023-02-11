@@ -38,7 +38,7 @@
     </div>
     <div id="characters" class="tabcontent">
         {% for object in characters %}
-            {% if character.player == user %}
+            {% if object.player == user %}
                 {% include "unlimited/character.html" %}
             {% endif %}
         {% endfor %}
