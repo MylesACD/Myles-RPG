@@ -60,8 +60,11 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 4* int(instance.stunning) 
     instance.cost += 4* int(instance.subtle)
     
-    instance.character.current_points = 0
+    # when saving cost of a technique update the points in use by the character 
     qset = Technique.objects.filter(character = instance.character)
+    temp_total = 0
     for tech in qset:
-        instance.character.current_points += tech.cost
-    #instance.character.save()
+        temp_total += tech.cost
+    instance.character.update(current_points=temp_total)    
+    
+     
