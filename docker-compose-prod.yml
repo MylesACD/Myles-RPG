@@ -17,7 +17,9 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     depends_on:
-      - db
+      - d
+    logging:
+      driver: none
   db:
     image: postgres:13-alpine
     restart: always
@@ -27,6 +29,8 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+    logging:
+      driver: none
   proxy:
     build:
       context: ./proxy
@@ -37,6 +41,8 @@ services:
      - 80:8000
     volumes:
       - static-data:/vol/static
+    logging:
+      driver: none
 
 volumes:
   postgres-data:
