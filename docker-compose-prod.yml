@@ -17,7 +17,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     depends_on:
-      - d
+      - db
     logging:
       driver: none
   db:
