@@ -58,8 +58,8 @@ class Technique(models.Model):
     boon = models.BooleanField(default=False)
     #----------tier 1 technique tags------------------
     MULTITARGET_CHOICES = (("0","1"),("1","2"),("2","3"),("3","4"))
-    AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"))
-    RANGE_CHOICES = (("0","touch"),("1","reach"),("2","near"),("3","far"),("4","remote"))
+    AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
+    RANGE_CHOICES = (("0","close"),("1","reach"),("2","near"),("3","far"),("4","remote"))
    
     multitarget = models.CharField(default="0",max_length=100,choices=MULTITARGET_CHOICES, )
     area = models.CharField(default="0",max_length=100,choices=AREA_CHOICES) 

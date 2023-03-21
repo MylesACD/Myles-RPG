@@ -17,7 +17,7 @@
         <li> Techniques are rolled +LVL</li>
         <li> There are four tiers of tags with increasing cost†.</li>
         <li> Some tags have multiple tiers, which require more points.</li>
-        <li> The base damage for techniques is 2d6.</li>
+        <li> The base damage for techniques is equal to your damage +1d6.</li>
     </ul>
     <h2>Guide to Tags</h2>
     <div id="accordion">
@@ -45,7 +45,7 @@
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
               <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Tier 1
+                Tier 1 (2 points)
               </button>
             </h5>
           </div>
@@ -54,8 +54,13 @@
               <dl>
                 <dt>Multitarget</dt>
                 <dd>How many places or people or things a technique can target. Default value is 1, every 2 points raises the number of targets by 1.</dd>
-                <dt>Area</dt>
-                <dd>How large of an area the technique affects. Default is no area. Small area has   </dd>
+                <dt>Range</dt>
+                <dd>How far your technique can reach. Default range is <b>Close</b>. Then <b>Reach</b>: up to 12 ft, <b>Near</b>: across a 2 way road, <b>Far</b>: down the length of football field
+                , <b>Remote</b>: Out of sight</dd>
+                <dt>Forceful</dt>
+                <dd>Has a lot of force behind it enough to knock people and furniture down.</dd>
+                <dt>Disarming</dt>
+                <dd>Removes the primary weapons of the target, even natural ones.</dd>
               </dl> 
             </div>
           </div>
@@ -84,7 +89,11 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body">
-                <!-- TODO -->
+                <dl>
+                  <dt>Area</dt>
+                  <dd>How large of an area the technique affects. Default is no area. <b>Small</b> area has 10 foot radius each additional levels doubles the radius. <b>Large</b> is 40ft, <b>colossal</b> is 320.</dd>
+                  <dd>None, Small, Medium, Large, Huge, Enormous, Colossal, Titanic</dd>
+                </dl>
               </div>
             </div>
           </div>
