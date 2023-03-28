@@ -1,0 +1,27 @@
+{% block content %}
+{% load static %}
+
+<html>
+<head>
+  <title>Random Number Generator</title>
+</head>
+<body>
+  <h1>Random Number Generator</h1>
+  <p id="random-number"></p>
+    
+    <button onclick="generateRandomNumber()" ><img src = "{% static 'landing/roll.gif' %}"></button>
+
+  <script>
+    function generateRandomNumber() {
+        // Generate a random number between 1 and 100
+        const randomNumber = Math.floor(Math.random() * 20) + 1;
+        
+        // Display the random number on the website
+        const randomNumberElement = document.getElementById("random-number");
+        randomNumberElement.textContent = `Your random number is: ${randomNumber}`;
+      }
+  </script>
+</body>
+</html>
+
+{% endblock content %}

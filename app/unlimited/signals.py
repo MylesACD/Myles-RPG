@@ -7,21 +7,23 @@ import math
 @receiver(pre_save, sender=Character)
 def create_character_slug(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.name)
-
+    
+@receiver(pre_save,sender=Character)
+def set_character_properties(sender, instance,*args,**kwargs):
+    instance.point_pool = 10+ 2 * instance.level
+    instance.current_points = 0
+    instance.max_cost = math.ceil(2 * (instance.point_pool) / 3)    
+    qset = Technique.objects.filter(character = instance)
+    for tech in qset:
+        instance.current_points += tech.cost
+        
+"""
 @receiver(post_save, sender=Character)
 def update_technique_costs(sender, instance, *args, **kwargs):
     qset = Technique.objects.filter(character = instance)
     for tech in qset:
         tech.save()
-
-@receiver(pre_save, sender=Character)
-def set_character_points(sender, instance, *args, **kwargs):
-    instance.point_pool = 10+ 2 * instance.level
-    instance.current_points = 0
-    qset = Technique.objects.filter(character = instance)
-    for tech in qset:
-        instance.current_points += tech.cost
-
+"""
   
 
 @receiver(pre_save, sender=Technique)
@@ -30,13 +32,14 @@ def create_technique_slug(sender, instance, *args, **kwargs):
         
 @receiver(pre_save, sender=Technique)
 def set_costs(sender, instance, *args, **kwargs):
-    instance.max_cost = math.ceil(2 * (10+2*instance.character.level) / 3)
+    
+    instance.max_cost = instance.character.max_cost
     instance.max_cost += 4*(instance.boon)
+    
     instance.cost = int(instance.power)
     instance.cost -= int(instance.boon) * 4
     #----------tier 1 technique tags------------------
     instance.cost += 2* int(instance.multitarget)
-    instance.cost += 2* int(instance.area) 
     instance.cost += 2* int(instance.range) 
     instance.cost += 2* int(instance.disarm)
     instance.cost += 2* int(instance.forceful) 
@@ -51,6 +54,7 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 3* int(instance.cure) 
     instance.cost += 3* int(instance.mobile)
     #----------tier 3 technique tags------------------
+    instance.cost += 4* int(instance.area) 
     instance.cost += 4* int(instance.summon)
     instance.cost += 4* int(instance.vampiric) 
     instance.cost += 4* int(instance.practiced) 
@@ -65,6 +69,7 @@ def set_costs(sender, instance, *args, **kwargs):
     temp_total = 0
     for tech in qset:
         temp_total += tech.cost
-    instance.character.update(current_points=temp_total)    
+        
+    Character.objects.get(character = instance.character).update(current_points=temp_total)    
     
      

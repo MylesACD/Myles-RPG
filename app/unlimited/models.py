@@ -20,8 +20,10 @@ class Character(models.Model):
     level = models.IntegerField()
     image = models.ImageField(default="default.jpg",blank=True)
     slug = models.SlugField(null=True,unique=True)
+    
     current_points = models.IntegerField(null=True)
     point_pool = models.IntegerField(null=True)
+    max_cost = models.IntegerField(null=True)
     
     def __str__(self):
         return self.name
@@ -58,14 +60,13 @@ class Technique(models.Model):
     boon = models.BooleanField(default=False)
     #----------tier 1 technique tags------------------
     MULTITARGET_CHOICES = (("0","1"),("1","2"),("2","3"),("3","4"))
-    AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
     RANGE_CHOICES = (("0","close"),("1","reach"),("2","near"),("3","far"),("4","remote"))
    
     multitarget = models.CharField(default="0",max_length=100,choices=MULTITARGET_CHOICES, )
-    area = models.CharField(default="0",max_length=100,choices=AREA_CHOICES) 
+   
     range = models.CharField(default="0",max_length=100,choices=RANGE_CHOICES)
     disarm = models.BooleanField(default=False)
-    forceful = models.BooleanField(default=False)
+    forceful = models.IntegerField(default=0)
     #----------tier 2 technique tags------------------
     HEAL_CHOICES = (("0","0%"),("1","50%"),("2","100%"))
     
@@ -80,7 +81,9 @@ class Technique(models.Model):
     mobile = models.BooleanField(default=False,null=True)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
+    AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
     
+    area = models.CharField(default="0",max_length=100,choices=AREA_CHOICES) 
     summon = models.CharField(default="0",max_length=100,choices=SUMMON_CHOICES)
     vampiric = models.BooleanField(default=False)
     practiced = models.BooleanField(default=False)
