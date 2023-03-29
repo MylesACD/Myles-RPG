@@ -24,6 +24,7 @@ class Character(models.Model):
     current_points = models.IntegerField(null=True)
     point_pool = models.IntegerField(null=True)
     max_cost = models.IntegerField(null=True)
+    available_points = models.IntegerField(null=True, default = 0)
     
     def __str__(self):
         return self.name
@@ -102,7 +103,6 @@ class Technique(models.Model):
     character = models.ForeignKey(Character, null=True,on_delete=models.SET_NULL)
     slug = models.SlugField(null=True,unique=True)
     
-    max_cost = models.IntegerField(null=True)
     cost = models.IntegerField(null=True)
    
    
