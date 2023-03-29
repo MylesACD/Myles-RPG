@@ -74,12 +74,12 @@ class Technique(models.Model):
     heal = models.CharField(default="0",max_length=100,choices=HEAL_CHOICES)
     destructive = models.BooleanField(default=False)
     combo = models.BooleanField(default=False)
-    immobilizing = models.BooleanField(default=False)
+    restricting = models.BooleanField(default=False)
     piercing = models.BooleanField(default=False)
     controlled = models.BooleanField(default=False)
     frightning = models.BooleanField(default=False)
-    cure = models.BooleanField(default=False)
     mobile = models.BooleanField(default=False,null=True)
+    lasting = models.BooleanField(default=False,null=True)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
     AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
@@ -92,7 +92,6 @@ class Technique(models.Model):
     stunning = models.BooleanField(default=False)
     subtle = models.BooleanField(default=False,null=True)
     #these 2 get labels
-    armor_shred = models.BooleanField(default=False)
     terrain = models.BooleanField(default=False)
     
     name = models.CharField(max_length=100,unique=True)

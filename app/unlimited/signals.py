@@ -43,12 +43,12 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 3* int(instance.heal)
     instance.cost += 3* int(instance.destructive) 
     instance.cost += 3* int(instance.combo)
-    instance.cost += 3* int(instance.immobilizing) 
+    instance.cost += 3* int(instance.restricting) 
     instance.cost += 3* int(instance.piercing)  
     instance.cost += 3* int(instance.controlled) 
     instance.cost += 3* int(instance.frightning) 
-    instance.cost += 3* int(instance.cure) 
     instance.cost += 3* int(instance.mobile)
+    instance.cost += 3* int(instance.lasting)
     #----------tier 3 technique tags------------------
     instance.cost += 4* int(instance.area) 
     instance.cost += 4* int(instance.summon)
@@ -56,7 +56,6 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 4* int(instance.practiced) 
     instance.cost += 4* int(instance.transformation)
     instance.cost += 4* int(instance.terrain) 
-    instance.cost += 4* int(instance.armor_shred) 
     instance.cost += 4* int(instance.stunning) 
     instance.cost += 4* int(instance.subtle)
     
