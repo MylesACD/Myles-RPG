@@ -3,7 +3,7 @@
 {% block content %}
     {% include "unlimited/technique.html" %}
     {% if object.author == user%}
-    <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.slug %}">Edit</a>
-    <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.slug %}">Delete</a>
-{% endif %}
+        <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.slug %}">Edit</a>
+        <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.slug %}">Delete</a>
+    {% endif %}
 {% endblock content%}

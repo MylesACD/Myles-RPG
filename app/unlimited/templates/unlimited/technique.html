@@ -19,9 +19,9 @@
     <h2 class="article-title"><a href="{% url "technique-detail" object.slug %}"> {{ object.name }}</a></h2>
 
         {% for field, value in object.fields.items %}
-            
-            {{ field }}: {{ value }}
-            
+            {% if value!=0 %}
+                {{ field }}: {{ value }}
+            {% endif %}
         {% endfor %}
 
     <p class="article-content">{{ object.content }}</p>
