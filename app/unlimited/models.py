@@ -17,7 +17,7 @@ class Character(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
     player = models.ForeignKey(User,on_delete=models.CASCADE)
-    level = models.IntegerField()
+    level = models.PositiveIntegerField(default=1)
     image = models.ImageField(default="default.jpg",blank=True)
     slug = models.SlugField(null=True,unique=True)
     
@@ -57,17 +57,16 @@ class Character(models.Model):
 class Technique(models.Model):
     
     #----------tier 0 technique tags------------------
-    power = models.IntegerField(default=0,null=True)
+    power = models.PositiveIntegerField(default=0,null=True)
     boon = models.BooleanField(default=False)
     #----------tier 1 technique tags------------------
     MULTITARGET_CHOICES = (("0","1"),("1","2"),("2","3"),("3","4"))
     RANGE_CHOICES = (("0","close"),("1","reach"),("2","near"),("3","far"),("4","remote"))
    
     multitarget = models.CharField(default="0",max_length=100,choices=MULTITARGET_CHOICES, )
-   
     range = models.CharField(default="0",max_length=100,choices=RANGE_CHOICES)
     disarm = models.BooleanField(default=False)
-    forceful = models.IntegerField(default=0)
+    forceful = models.PositiveIntegerField(default=0)
     #----------tier 2 technique tags------------------
     HEAL_CHOICES = (("0","0%"),("1","50%"),("2","100%"))
     
@@ -78,8 +77,8 @@ class Technique(models.Model):
     piercing = models.BooleanField(default=False)
     controlled = models.BooleanField(default=False)
     frightning = models.BooleanField(default=False)
-    mobile = models.BooleanField(default=False,null=True)
-    lasting = models.BooleanField(default=False,null=True)
+    mobile = models.BooleanField(default=False)
+    lasting = models.BooleanField(default=False)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
     AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
@@ -90,7 +89,7 @@ class Technique(models.Model):
     practiced = models.BooleanField(default=False)
     transformation = models.BooleanField(default=False)
     stunning = models.BooleanField(default=False)
-    subtle = models.BooleanField(default=False,null=True)
+    subtle = models.BooleanField(default=False)
     #these 2 get labels
     terrain = models.BooleanField(default=False)
     
@@ -103,6 +102,8 @@ class Technique(models.Model):
     slug = models.SlugField(null=True,unique=True)
     
     cost = models.IntegerField(null=True)
+    max_cost = models.IntegerField(default= 0)
+    
    
    
     success_message = "Technique saved successfully"
@@ -119,4 +120,44 @@ class Technique(models.Model):
     def get_success_message(self):
         return self.success_message
     
+    def active_tags(self):
+        """
+        Returns a list of a model's fields that are not the default value.
+        """
+        nondefault_fields = []
+        # TODO maybe find a way to automate these lists
+        exempt_field_names = ["id","name","last_modified","date_created","author","character","slug","cost","max_cost"]
+        tier1 = ["disarm","forceful","range","multitarget"]
+        tier2 = ["heal","destructive","combo","restricting","piercing","controlled","frightning","lasting","mobile"]
+        tier3 = ["area","vampiric","practiced","transformation","summon","terrain","stunning","subtle"]
+
+        # Loop through all the fields of the model
+        for field in self._meta.fields:
+
+            # Get the value of the field for the model instance
+            field_value = getattr(self, field.name)
+            
+            # Compare the field's value with the default value
+            if field_value != field.get_default() and field.name not in exempt_field_names:
+                
+                if field.name == "power":
+                    cost = int(field_value)
+                elif field.name == "boon":
+                    cost = -4
+                elif field.name in tier1:
+                    cost = 2 * int(field_value)
+                elif field.name in tier2:
+                    cost = 3 * int(field_value)
+                else:
+                    cost = 4 * int(field_value)
+                
+                label = field.name
+                # only add the value if the field is not a boolean field
+                if str(field_value) != "True":
+                     label+= ": " + str(field_value)
+
+                    
+                nondefault_fields.append((cost,label))
+
+        return nondefault_fields
     

@@ -7,11 +7,11 @@
         <small class="text-muted">{{ object.date_created|date:"F j, Y" }}</small>
        
     </div>
-    <h2 class="article-title"> {{ object.name }}</h2>
+    <h2 class="article-title"><a href="{% url "character-detail" object.slug %}"> {{ object.name }}</a></h2>
     <p class="article-content">Level: {{ object.level }}</p>
-    <p class="article-content">Max: {{ object.max_cost }}</p>
-    <p class="article-content">Pool: {{ object.point_pool }}</p>
-    <p class="article-content">Available: {{ object.available }}</p>
+    <p class="article-content">Maximum technique cost: {{ object.max_cost }}</p>
+    <p class="article-content">Total point pool: {{ object.point_pool }}</p>
+    <p class="article-content">Available points: {{ object.available_points }}</p>
     
     </div>
 </article>

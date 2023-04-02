@@ -9,24 +9,27 @@
     <div class="article-metadata">
         Used By 
         {% if object.character %}
-        <a class="mr-2" href="{% url "character-detail"  object.character.slug %}">{{ object.character }}</a>
+        <a class="mr-2" href="{% url "character-detail"  object.character.slug %}">{{ object.character}},</a>
         {% else %}
-        Nobody
+        Nobody, 
         {% endif %}
-        <small class="text-muted">{{ tech.date_created|date:"F j, Y" }}</small>
-       
+        Costing: {{ object.cost }}/{{object.character.point_pool}}
     </div>
-    <h2 class="article-title"><a href="{% url "technique-detail" object.slug %}"> {{ object.name }}</a></h2>
+    <h1 class="article-title"><a href="{% url "technique-detail" object.slug %}"> {{ object.name }}</a></h1>
 
-        {% for field, value in object.fields.items %}
-            {% if value!=0 %}
-                {{ field }}: {{ value }}
-            {% endif %}
-        {% endfor %}
-
+       
+            {% for cost,tag in object.active_tags %}
+               
+                    <div class="chip">
+                        <div class="chip-head">{{ cost }}</div>
+                        <div class="chip-content">{{ tag }}</div>
+                    </div>
+                
+            {% endfor %}
+        
     <p class="article-content">{{ object.content }}</p>
         <div>
-           Created By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{object.author.profile.pfp.url}}"><a class="mr-2" href="{% url "user-techniques" object.author.username %}">{{ object.author }}</a>
+           Created By <img class="rounded-circle article-img" style="width:5%;height:5%;margin-left:6px;margin-right:6px" src="{{object.author.profile.pfp.url}}"><a class="mr-2" href="{% url "user-techniques" object.author.username %}">{{ object.author }}</a> 
         </div>
     </div>
 </article>

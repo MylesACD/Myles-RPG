@@ -10,14 +10,19 @@ def create_character_slug(sender, instance, *args, **kwargs):
     
 @receiver(pre_save,sender=Character)
 def set_character_properties(sender, instance,*args,**kwargs):
-    instance.point_pool = 10+ 2 * instance.level
+    instance.point_pool = 12+ 3 * instance.level
     instance.current_points = 0
     instance.max_cost = math.ceil(2 * (instance.point_pool) / 3)    
-   
+    instance.available_points = 0
     
     for tech in Technique.objects.filter(character = instance):
-        instance.current_points += tech.cost
-    instance.available_points = instance.point_pool - instance.current_points 
+        
+        # dont add technique cost if boon brings it below 0
+        if tech.cost > 0:
+            instance.current_points += tech.cost
+        
+            
+    instance.available_points = instance.point_pool - instance.current_points
 
 
   
@@ -30,7 +35,7 @@ def create_technique_slug(sender, instance, *args, **kwargs):
 def set_costs(sender, instance, *args, **kwargs):
     
     instance.max_cost = instance.character.max_cost
-    instance.max_cost += 4*(instance.boon)
+    instance.max_cost += 4*int(instance.boon)
     
     instance.cost = int(instance.power)
     instance.cost -= int(instance.boon) * 4
@@ -62,10 +67,8 @@ def set_costs(sender, instance, *args, **kwargs):
     # when saving cost of a technique update the points in use by the character 
     
         
-    @receiver(post_save, sender=Technique)
-    def save_character(sender, instance, *args, **kwargs):
-        qset = Character.objects.filter(character = instance.character ) 
-        for c in qset: 
-            c.save()   
+@receiver(post_save, sender=Technique)
+def save_character(sender, instance, *args, **kwargs):
+    instance.character.save()
 
     

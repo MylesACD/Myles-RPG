@@ -9,10 +9,13 @@
                 <legend class ="border-bottem mb-4">Design Your Technique</legend>
                 {% crispy form %}
             </fieldset>
-           <span><p>Character's Max Cost: {{ form.instance.character.max_cost }}<p></span>
+            {% if form.instance.character.max_cost > form.instance.max_most %}
+                <span><p>Max Cost: {{ form.instance.character.max_cost }}<p></span>
+            {% else %}
+                <span><p>Max Cost: {{ form.instance.max_cost }}<p></span>
+            {% endif %}
            <span><p>Available Points: {{ form.instance.character.available_points }}<p></span>
            <span><p>Most Recent Submission: {{ form.instance.cost }}<p></span> 
         </form>
-        
     </div>
 {% endblock content%}
