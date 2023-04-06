@@ -1,8 +1,10 @@
 {% extends "unlimited/base.html" %}
 {% block content %}
     <h1>Player Techniques</h1>
-    {% for object in techniques%}
-        {% include "unlimited/technique.html" %}
+    {% for object in techniques %}
+        {% if object.public %}
+            {% include "unlimited/technique.html" %}
+        {% endif %}
     {% endfor %}
     {% if is_paginated %}
         {% if page_obj.has_previous %}

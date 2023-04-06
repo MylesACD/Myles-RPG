@@ -100,6 +100,7 @@ class Technique(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     character = models.ForeignKey(Character, null=True,on_delete=models.SET_NULL)
     slug = models.SlugField(null=True,unique=True)
+    public = models.BooleanField(default=False,null=True)
     
     cost = models.IntegerField(null=True)
     max_cost = models.IntegerField(default= 0)
@@ -119,6 +120,10 @@ class Technique(models.Model):
     
     def get_success_message(self):
         return self.success_message
+    
+    def toggle_public(self):
+        self.public = not self.public
+        self.save()
     
     def active_tags(self):
         """

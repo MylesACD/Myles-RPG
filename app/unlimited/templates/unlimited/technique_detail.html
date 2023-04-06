@@ -3,6 +3,17 @@
 {% block content %}
     {% include "unlimited/technique.html" %}
     {% if object.author == user%}
+
+            
+          
+            {% if object.public %}
+            
+                <a class="btn btn-warning btn-sm mb-1" href="{% url "public-redirect" object.slug%}">Retract</a>
+                
+            {% else %}
+                <a class="btn btn-primary btn-sm mb-1" href="{% url "public-redirect" object.slug%}">Publish</a>   
+            {% endif %}
+            </form>
         <a class="btn btn-secondary btn-sm mb-1" href="{% url "technique-update" object.slug %}">Edit</a>
         <a class="btn btn-danger btn-sm mb-1" href="{% url "technique-delete" object.slug %}">Delete</a>
     {% endif %}

@@ -18,9 +18,25 @@ def home(request):
 def about(request):
     return render(request,"unlimited/about.html")
 
+"""
+def technique_publicity_redirect(request):
+    tech = request.session.get("tech",None)
+    context ={
+        "tech": tech
+    }
+    return render(request,"unlimited/technique_publicity.html",context)
+"""
+   
+
+
+
 '''
 Technique Views
 '''
+class TechniquePublicView(DetailView):
+    model = Technique
+    template_name = "unlimited/technique_publicity.html"
+
 class TechniqueListView(ListView):
     model = Technique
     template_name = "unlimited/home.html"
@@ -39,7 +55,8 @@ class UserTechniqueListView(ListView):
         return Technique.objects.filter(author=user).order_by("-date_created")
         
 class TechniqueDetailView(DetailView):
-    model = Technique
+    model = Technique       
+
           
 #TODO this class and TechniqueUpdateView are basiaclly the same thing
 #maybe find a way to combine the code for future simplicity 
