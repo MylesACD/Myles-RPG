@@ -51,7 +51,7 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 3* int(instance.restricting) 
     instance.cost += 3* int(instance.piercing)  
     instance.cost += 3* int(instance.controlled) 
-    instance.cost += 3* int(instance.frightning) 
+    instance.cost += 3* int(instance.frightening) 
     instance.cost += 3* int(instance.mobile)
     instance.cost += 3* int(instance.lasting)
     #----------tier 3 technique tags------------------

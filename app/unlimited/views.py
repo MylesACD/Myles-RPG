@@ -18,18 +18,6 @@ def home(request):
 def about(request):
     return render(request,"unlimited/about.html")
 
-"""
-def technique_publicity_redirect(request):
-    tech = request.session.get("tech",None)
-    context ={
-        "tech": tech
-    }
-    return render(request,"unlimited/technique_publicity.html",context)
-"""
-   
-
-
-
 '''
 Technique Views
 '''
@@ -44,6 +32,9 @@ class TechniqueListView(ListView):
     ordering = ["-date_created"]
     paginate_by = 4
     
+    def get_queryset(self):
+        return Technique.objects.filter(public=True).order_by("-date_created")
+    
 class UserTechniqueListView(ListView):
     model = Technique
     template_name = "unlimited/user_techniques.html"
@@ -52,7 +43,7 @@ class UserTechniqueListView(ListView):
     
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
-        return Technique.objects.filter(author=user).order_by("-date_created")
+        return Technique.objects.filter(author=user,public=True).order_by("-date_created")
         
 class TechniqueDetailView(DetailView):
     model = Technique       

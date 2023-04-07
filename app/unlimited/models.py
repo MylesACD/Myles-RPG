@@ -76,7 +76,7 @@ class Technique(models.Model):
     restricting = models.BooleanField(default=False)
     piercing = models.BooleanField(default=False)
     controlled = models.BooleanField(default=False)
-    frightning = models.BooleanField(default=False)
+    frightening = models.BooleanField(default=False)
     mobile = models.BooleanField(default=False)
     lasting = models.BooleanField(default=False)
     #----------tier 3 technique tags------------------
@@ -131,7 +131,7 @@ class Technique(models.Model):
         """
         nondefault_fields = []
         # TODO maybe find a way to automate these lists
-        exempt_field_names = ["id","name","last_modified","date_created","author","character","slug","cost","max_cost"]
+        exempt_field_names = ["id","name","last_modified","date_created","author","character","slug","cost","max_cost","public"]
         tier1 = ["disarm","forceful","range","multitarget"]
         tier2 = ["heal","destructive","combo","restricting","piercing","controlled","frightning","lasting","mobile"]
         tier3 = ["area","vampiric","practiced","transformation","summon","terrain","stunning","subtle"]

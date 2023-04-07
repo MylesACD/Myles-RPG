@@ -1,7 +1,12 @@
-{% load static%}
+
 <head>
     {{ object.toggle_public}}
-    <meta http-equiv="refresh" content="1; URL={% url "unlimited-home" %}" />
+    <style>
+        body {
+            background: #161616 !important;
+            color: #666666;
+            margin-top: 5rem;
+          }
+    </style>
+    <meta http-equiv="refresh" content="0; URL={% url "unlimited-home" %}" />
 </head>
-<body>
-</body>
