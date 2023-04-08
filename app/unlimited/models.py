@@ -62,19 +62,22 @@ class Technique(models.Model):
     #----------tier 1 technique tags------------------
     MULTITARGET_CHOICES = (("0","1"),("1","2"),("2","3"),("3","4"))
     RANGE_CHOICES = (("0","close"),("1","reach"),("2","near"),("3","far"),("4","remote"))
+    FORCEFUL_CHOICES = (("0","Normal"),("1","Strong"),("2","Excessive"))
    
     multitarget = models.CharField(default="0",max_length=100,choices=MULTITARGET_CHOICES, )
     range = models.CharField(default="0",max_length=100,choices=RANGE_CHOICES)
     disarm = models.BooleanField(default=False)
-    forceful = models.PositiveIntegerField(default=0)
+    forceful = models.CharField(default="0",max_length=100,choices = FORCEFUL_CHOICES)
     #----------tier 2 technique tags------------------
     HEAL_CHOICES = (("0","0%"),("1","50%"),("2","100%"))
+    PIERCING_CHOICES = (("0","None"),("1","armor piercing"),("2","armor shredding"))
     
     heal = models.CharField(default="0",max_length=100,choices=HEAL_CHOICES)
+    piercing = models.CharField(default="0",max_length=100,choices = PIERCING_CHOICES)
     destructive = models.BooleanField(default=False)
     combo = models.BooleanField(default=False)
     restricting = models.BooleanField(default=False)
-    piercing = models.BooleanField(default=False)
+  
     controlled = models.BooleanField(default=False)
     frightening = models.BooleanField(default=False)
     mobile = models.BooleanField(default=False)
@@ -93,8 +96,8 @@ class Technique(models.Model):
     #these 2 get labels
     terrain = models.BooleanField(default=False)
     
-    name = models.CharField(max_length=100,unique=True)
-    content = models.TextField()
+    name = models.CharField(max_length=200,unique=True)
+    content = models.TextField(blank=True)
     last_modified = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -131,7 +134,7 @@ class Technique(models.Model):
         """
         nondefault_fields = []
         # TODO maybe find a way to automate these lists
-        exempt_field_names = ["id","name","last_modified","date_created","author","character","slug","cost","max_cost","public"]
+        exempt_field_names = ["id","name","last_modified","date_created","author","character","slug","cost","max_cost","public","content"]
         tier1 = ["disarm","forceful","range","multitarget"]
         tier2 = ["heal","destructive","combo","restricting","piercing","controlled","frightning","lasting","mobile"]
         tier3 = ["area","vampiric","practiced","transformation","summon","terrain","stunning","subtle"]
