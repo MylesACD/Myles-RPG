@@ -36,6 +36,8 @@ class TechniqueForm(forms.ModelForm):
         self.fields["range"].required = False
         self.fields["heal"].required = False
         self.fields["summon"].required = False
+        self.fields["forceful"].required = False
+        self.fields["piercing"].required = False
           
         self.helper = FormHelper()
         self.helper.layout = Layout(

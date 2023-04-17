@@ -70,7 +70,7 @@ class Technique(models.Model):
     forceful = models.CharField(default="0",max_length=100,choices = FORCEFUL_CHOICES)
     #----------tier 2 technique tags------------------
     HEAL_CHOICES = (("0","0%"),("1","50%"),("2","100%"))
-    PIERCING_CHOICES = (("0","None"),("1","armor piercing"),("2","armor shredding"))
+    PIERCING_CHOICES = (("0","None"),("1","Armor Piercing"),("2","Armor Shredding"))
     
     heal = models.CharField(default="0",max_length=100,choices=HEAL_CHOICES)
     piercing = models.CharField(default="0",max_length=100,choices = PIERCING_CHOICES)
@@ -84,7 +84,7 @@ class Technique(models.Model):
     lasting = models.BooleanField(default=False)
     #----------tier 3 technique tags------------------
     SUMMON_CHOICES =  (("0","None"),("1","1"),("2","2"),("3","3"))
-    AREA_CHOICES = (("0","none"),("1","small"),("2","medium"),("3","large"),("4","huge"),("5","enormous"),("6","colossal"),("7","titanic"))
+    AREA_CHOICES = (("0","None"),("1","Small"),("2","Medium"),("3","Large"),("4","Huge"),("5","Enormous"),("6","Colossal"),("7","Titanic"))
     
     area = models.CharField(default="0",max_length=100,choices=AREA_CHOICES) 
     summon = models.CharField(default="0",max_length=100,choices=SUMMON_CHOICES)
@@ -107,7 +107,7 @@ class Technique(models.Model):
     
     cost = models.IntegerField(null=True)
     max_cost = models.IntegerField(default= 0)
-    
+    adjustment = models.IntegerField(default=0)
    
    
     success_message = "Technique saved successfully"
@@ -148,7 +148,7 @@ class Technique(models.Model):
             # Compare the field's value with the default value
             if field_value != field.get_default() and field.name not in exempt_field_names:
                 
-                if field.name == "power":
+                if field.name == "power" or field.name== "adjustment":
                     cost = int(field_value)
                 elif field.name == "boon":
                     cost = -4

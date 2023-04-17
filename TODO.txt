@@ -14,4 +14,4 @@ debug=false in yml
 
 BUGS
     character form character drop down length
-    lvl 2 of pierce should be shred
+   

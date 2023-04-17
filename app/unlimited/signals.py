@@ -64,6 +64,7 @@ def set_costs(sender, instance, *args, **kwargs):
     instance.cost += 4* int(instance.stunning) 
     instance.cost += 4* int(instance.subtle)
     
+    instance.cost += int(instance.adjustment)
     # when saving cost of a technique update the points in use by the character 
     
         
