@@ -8,6 +8,8 @@ from .models import Technique, Character
 from .forms import TechniqueForm, CharacterForm
 # Create your views here.
 
+pagination= 4
+
 def home(request):
     context ={
         "techniques": Technique.objects.all()
@@ -30,7 +32,7 @@ class TechniqueListView(ListView):
     template_name = "unlimited/home.html"
     context_object_name = "techniques"
     ordering = ["-date_created"]
-    paginate_by = 4
+    paginate_by = pagination
     
     def get_queryset(self):
         return Technique.objects.order_by("-date_created")
@@ -39,11 +41,11 @@ class UserTechniqueListView(ListView):
     model = Technique
     template_name = "unlimited/user_techniques.html"
     context_object_name = "techniques"
-    paginate_by = 4
+    paginate_by = pagination
     
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
-        return Technique.objects.filter(author=user,public=True).order_by("-date_created")
+        return Technique.objects.filter(author=user).order_by("-date_created")
         
 class TechniqueDetailView(DetailView):
     model = Technique       
