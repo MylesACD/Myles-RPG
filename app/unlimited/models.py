@@ -105,9 +105,9 @@ class Technique(models.Model):
     slug = models.SlugField(null=True,unique=True)
     public = models.BooleanField(default=False,null=True)
     
-    cost = models.IntegerField(null=True)
+    cost = models.IntegerField(default = 0)
     max_cost = models.IntegerField(default= 0)
-    adjustment = models.IntegerField(default=0)
+    adjustment = models.IntegerField(default = 0)
    
    
     success_message = "Technique saved successfully"
@@ -148,7 +148,7 @@ class Technique(models.Model):
             # Compare the field's value with the default value
             if field_value != field.get_default() and field.name not in exempt_field_names:
                 
-                if field.name == "power" or field.name== "adjustment":
+                if field.name == "power" or field.name == "adjustment":
                     cost = int(field_value)
                 elif field.name == "boon":
                     cost = -4

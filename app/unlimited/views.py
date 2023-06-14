@@ -33,7 +33,7 @@ class TechniqueListView(ListView):
     paginate_by = 4
     
     def get_queryset(self):
-        return Technique.objects.filter(public=True).order_by("-date_created")
+        return Technique.objects.order_by("-date_created")
     
 class UserTechniqueListView(ListView):
     model = Technique

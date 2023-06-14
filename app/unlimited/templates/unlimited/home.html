@@ -2,7 +2,7 @@
 {% block content %}
     <h1>Player Techniques</h1>
     {% for object in techniques %}
-        {% if object.public %}
+        {% if user.is_superuser or object.public%}
             {% include "unlimited/technique.html" %}
         {% endif %}
     {% endfor %}

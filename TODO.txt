@@ -3,8 +3,6 @@ setttings TODO
 Landing title & page buttons
     technique analysis
 
-unlimited about page
-
 advanced & org moves app
 email sending
 wiki app
