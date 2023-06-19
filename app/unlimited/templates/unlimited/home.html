@@ -2,9 +2,7 @@
 {% block content %}
     <h1>Player Techniques</h1>
     {% for object in techniques %}
-        {% if user.is_superuser or object.public%}
             {% include "unlimited/technique.html" %}
-        {% endif %}
     {% endfor %}
     {% if is_paginated %}
         {% if page_obj.has_previous %}

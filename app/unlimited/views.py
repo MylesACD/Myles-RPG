@@ -11,9 +11,14 @@ from .forms import TechniqueForm, CharacterForm
 pagination= 4
 
 def home(request):
-    context ={
-        "techniques": Technique.objects.all()
-    }
+    if request.user.is_superuser:
+        context ={
+            "techniques": Technique.objects.all(),
+        }
+    else:
+        context ={
+            "techniques": Technique.objects.filter(public=True)
+        }
     return render(request,"unlimited/home.html",context)
 
     
