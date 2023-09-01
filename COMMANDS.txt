@@ -14,9 +14,11 @@ docker-compose -f docker-compose-prod.yml build
 
 On Server
 
-
+cd Myles-RPG
 docker-compose -f docker-compose-prod.yml run --rm app sh -c "python manage.py createsuperuser"
+docker-compose -f docker-compose-prod.yml run --rm app sh -c "python manage.py dumpdata > data_dump.json"
 docker-compose -f docker-compose-prod.yml logs
+
 
 ---UPDATE COMMANDS----
 git pull origin
@@ -24,3 +26,5 @@ docker-compose -f docker-compose-prod.yml build app
 docker-compose -f docker-compose-prod.yml up --no-deps -d app
 
 sh update-app.sh
+
+bash update

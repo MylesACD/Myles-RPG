@@ -12,16 +12,6 @@ pagination= 4
 
 # I forgot that is simple version of home is not even being used so changing does nothing
 def home(request):
-    '''
-    if request.user.is_superuser:
-        context ={
-            "techniques": Technique.objects.all()
-        }
-    else:
-        context ={
-            "techniques": Technique.objects.filter(public=True)
-        }
-    '''
     context ={}
     return render(request,"unlimited/home.html",context)
 
@@ -51,6 +41,9 @@ class TechniqueListView(ListView):
             return Technique.objects.order_by("-date_created")
         else:
             return Technique.objects.filter(public=True).order_by("-date_created")
+        
+    def get_paginate_by(self,queryset):
+        return self.request.GET.get("paginate_by",self.paginate_by)
     
 class UserTechniqueListView(ListView):
     model = Technique
@@ -61,7 +54,7 @@ class UserTechniqueListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get("username"))
         current_user = self.request.user
-        # some redudant checks just to make sure
+       
         # if the logged in user is a super user or the user in question show all their techiniques
         if current_user.is_superuser or current_user is user:
             return Technique.objects.filter(author=user).order_by("-date_created")
