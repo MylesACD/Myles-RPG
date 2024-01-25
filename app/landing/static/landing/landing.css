@@ -69,5 +69,5 @@ body {
 
   }
   .glow-button:hover {
-    animation: glow 1s infinite
+    animation: glow 1s infinite, glow 1s delay 0.5s infinite 
   }
