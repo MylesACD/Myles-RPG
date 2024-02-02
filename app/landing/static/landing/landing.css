@@ -31,26 +31,25 @@ body {
   
   @keyframes glow {
     0% {
-        box-shadow: 10px -10px 20px -5px var(--glow-color);
+        box-shadow: 10px -10px 20px -5px var(--glow-color), -10px 10px 20px -5px var(--glow-color);
     }12.5%{
-        box-shadow: 0px -10px 20px -5px var(--glow-color);
+        box-shadow: 0px -10px 20px -5px var(--glow-color), 0px 10px 20px -5px var(--glow-color);
     }25% {
-        box-shadow: -10px -10px 20px -5px var(--glow-color);
+        box-shadow: -10px -10px 20px -5px var(--glow-color), 10px 10px 20px -5px var(--glow-color);
     }37.5%{
-        box-shadow: -10px 0px 20px -5px var(--glow-color);
+        box-shadow: -10px 0px 20px -5px var(--glow-color), 10px 0px 20px -5px var(--glow-color);
     }50%{
-        box-shadow: -10px 10px 20px -5px var(--glow-color);
+        box-shadow: -10px 10px 20px -5px var(--glow-color), 10px -10px 20px -5px var(--glow-color);
     }62.5%{
-        box-shadow: 0px 10px 20px -5px var(--glow-color);
+        box-shadow: 0px 10px 20px -5px var(--glow-color), 0px -10px 20px -5px var(--glow-color);
     }75%{
-        box-shadow: 10px 10px 20px -5px var(--glow-color);
+        box-shadow: 10px 10px 20px -5px var(--glow-color), -10px -10px 20px -5px var(--glow-color);
     }87.5%{
-        box-shadow: 10px 0px 20px -5px var(--glow-color);
+        box-shadow: 10px 0px 20px -5px var(--glow-color), -10px 0px 20px -5px var(--glow-color);
     }100% {
-        box-shadow: 10px -10px 20px -5px var(--glow-color);
+        box-shadow: 10px -10px 20px -5px var(--glow-color), -10px 10px 20px -5px var(--glow-color);
     }
   }
-
   
   .comet{
      --glow-color: #FF1E22;
@@ -69,5 +68,5 @@ body {
 
   }
   .glow-button:hover {
-    animation: glow 1s infinite, glow 1s delay 0.5s infinite 
+    animation: glow 1s infinite
   }

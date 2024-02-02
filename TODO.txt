@@ -1,13 +1,16 @@
 setttings TODO
 404 and 500 error pages
 Landing title & page buttons
-    technique analysis
+    technique stats analysis
 
 advanced & org moves app
 email sending
-wiki app
 
-debug=false in yml
+wiki app
+    search bar
+
+
+debug=0 in yml
 
 
 BUGS

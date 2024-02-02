@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "landing.apps.LandingConfig",
     "users.apps.UsersConfig",
     "unlimited.apps.UnlimitedConfig",
+    "wiki.apps.WikiConfig",
     "crispy_forms",
     "django_rename_app",
     "django.contrib.admin",

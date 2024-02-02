@@ -33,5 +33,6 @@ urlpatterns = [
     path("password-reset-complete/",auth_views.PasswordResetCompleteView.as_view(template_name="users/password_reset_complete.html"), name="password-reset-complete"),
     path("profile/",user_views.profile,name="profile"),
     path("unlimited/",include("unlimited.urls"),name="unlimited"),
+    path("wiki/",include("wiki.urls"),name="wiki"),
 ]
  

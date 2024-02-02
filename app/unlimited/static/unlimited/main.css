@@ -12,6 +12,7 @@
     background: var(--primary) !important;
     color: var(--text-on-background);
     margin-top: 5rem;
+    font-family: sans-serif
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -46,6 +47,9 @@
     margin-bottom: 20px;
   }
   
+  a{
+    color: var(--accent)
+  }
   .article-title {
     color: var(--text-on-background);
   }
