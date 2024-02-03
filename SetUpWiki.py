@@ -63,5 +63,4 @@ for file in os.scandir(dir):
         os.remove(file)
     elif file.name == "ScratchPad.html":
         os.remove(file)
-        
 #clear_old_templates()
