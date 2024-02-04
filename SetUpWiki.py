@@ -34,7 +34,7 @@ def django_template_blockify(og_content):
     repl1 = "{% extends \"wiki/wiki-base.html\" %}{% block content %}" + "\n"
     pattern1 = r"<([\w\.\,\:\;\s\'\/\"\-\’\[\]\<\>\=\@\!\$\%\^\&\*\(\)\/]*)(<body class=\"wikidpad\">)"
     
-    repl2 = "{% endblock content%}"
+    repl2 = "{% endblock content %}"
     pattern2 = r"(<\/body>)\s\S*(<\/html>)"
     def replace_between_symbols(pattern, repl, html_content):
         replaced_content = re.sub(pattern, repl, html_content)
@@ -49,18 +49,23 @@ def clear_old_templates():
         if file.name != "wiki-base.html" and file.name.endswith(".html"):
             os.remove(file)
     
-
+def clean_name(file):
+    os.replace(file,file.name.replace("%27",""))
 #modifiy the templates
 dir = r"C:\\Users\\Myles\\Documents\\Ethos Project\\Ethos-Project\\Wiki\\Ethos\\HTML"
 for file in os.scandir(dir):
-   
-    if file.name.endswith(".html"): 
-        write_modified(redact, file)
-        write_modified(django_template_blockify, file)
-    elif file.name.endswith(".css"):
-        os.remove(file)
-    elif file.name == "WikiSettings.html":
+    
+    
+    if file.name == "WikiSettings.html":
         os.remove(file)
     elif file.name == "ScratchPad.html":
         os.remove(file)
+    elif file.name.endswith(".html"):
+        
+        write_modified(redact, file)
+        write_modified(django_template_blockify, file)
+        clean_name(file) 
+    elif file.name.endswith(".css"):
+        os.remove(file)
+    
 #clear_old_templates()

@@ -31,6 +31,12 @@
                         <a class="nav-item nav-link" href="{% url "wiki-random" %}">Random Article</a>
                         </div>
                         <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+                           <form class="nav-item"  action="{% url "wiki-search-articles" %}">{% csrf_token %}
+                                <input class="nav-item form-control me-2" type="search" placeholder="Search">
+                                <button class="nav-item btn btn-outline-secondary" type="submit">Search</b>
+                           </form>
+                        </div>
                     </div>
                 </div>
             </nav>
