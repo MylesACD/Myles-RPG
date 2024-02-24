@@ -1,0 +1,15 @@
+{% extends "wiki/wiki-base.html" %}{% block content %}
+
+{% if searched %}
+    <h1>Results For {{searched}}</h1>
+    {% for a,c in articles %}
+        <p><a  href="{% url a %}">{{a}}</a></p>
+    {% endfor %}
+
+
+
+{% else%}
+    <h1>Results For nothing, maybe try searching something bozo</h1>
+{%endif%}
+
+{% endblock content%}

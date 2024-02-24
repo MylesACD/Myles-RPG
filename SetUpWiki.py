@@ -1,5 +1,6 @@
 import re
 import os
+import shutil
 
 # helper for writing the changes into the files
 def write_modified(func,path):
@@ -42,17 +43,16 @@ def django_template_blockify(og_content):
     decapitated = replace_between_symbols(pattern1,repl1,og_content)
     return replace_between_symbols(pattern2, repl2, decapitated)
 
-def clear_old_templates():
-    dir = os.getcwd()
-    dir += "\\app\\wiki\\templates\\wiki"
-    for file in os.scandir(dir):
-        if file.name != "wiki-base.html" and file.name.endswith(".html"):
-            os.remove(file)
-    
-def clean_name(file):
-    os.replace(file,file.name.replace("%27",""))
-#modifiy the templates
+
+   
+def rename_and_relocate(file):
+   os.replace(file,os.getcwd()+ "\\app\\wiki\\templates\\wiki\\"+file.name.replace("%27",""))
+
+
+
+
 dir = r"C:\\Users\\Myles\\Documents\\Ethos Project\\Ethos-Project\\Wiki\\Ethos\\HTML"
+curr_dir = os.getcwd()+ "\\app\\wiki\\templates\\wiki"
 for file in os.scandir(dir):
     
     
@@ -64,8 +64,7 @@ for file in os.scandir(dir):
         
         write_modified(redact, file)
         write_modified(django_template_blockify, file)
-        clean_name(file) 
+        rename_and_relocate(file)
     elif file.name.endswith(".css"):
         os.remove(file)
     
-#clear_old_templates()

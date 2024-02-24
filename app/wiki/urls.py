@@ -6,10 +6,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+
 urlpatterns =[
         path('',views.home,name="wiki-home"),
         path("random", views.get_random, name='wiki-random'),
-        path('search_articles',views.search_articles,name="wiki-search-articles"),
+        path('search',views.SearchView.as_view(),name="wiki-search-articles"),
     ]
 
 dir = os.path.join(os.getcwd(),"wiki/templates/wiki")
