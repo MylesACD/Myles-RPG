@@ -60,6 +60,8 @@ for file in os.scandir(dir):
         os.remove(file)
     elif file.name == "ScratchPad.html":
         os.remove(file)
+    elif "Template" in file.name:
+        os.remove(file)
     elif file.name.endswith(".html"):
         
         write_modified(redact, file)
